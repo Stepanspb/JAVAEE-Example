@@ -1,4 +1,3 @@
-
 package web;
 
 import EJBPack.SelectBeanLocal;
@@ -12,17 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 public class ViewList extends HttpServlet {
-@EJB
-UpdateBeanLocal ubl;
-@EJB
-SelectBeanLocal sbl;
+
+    @EJB
+    UpdateBeanLocal ubl;
+    @EJB
+    SelectBeanLocal sbl;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String name, val, val2, buttonPress, deletPress,  dbname;
+        String name, val, val2, buttonPress, deletPress, dbname;
         Attribute atr;
         HttpSession hs = request.getSession(true);
         Object obj = hs.getAttribute("Attribute");
@@ -38,7 +38,7 @@ SelectBeanLocal sbl;
         val2 = request.getParameter("value2");
         buttonPress = request.getParameter("submitbutton");
         deletPress = request.getParameter("deletbutton");
-                
+
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -71,40 +71,18 @@ SelectBeanLocal sbl;
             }
             // ejb
             if (deletPress != null) {
-            out.println(ubl.ParameterDel(dbname));
-            }   
-            if (request.getParameter("dbsubmitbutton") != null){
-            out.println(sbl.showResults(dbname));
+                out.println(ubl.ParameterDel(dbname));
             }
-                
+            if (request.getParameter("dbsubmitbutton") != null) {
+                out.println(sbl.showResults(dbname));
+            }
+
             // ejb end
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");
         }
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ViewList</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ViewList at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
     private String getform() {
         StringBuilder sb = new StringBuilder();
@@ -118,7 +96,7 @@ SelectBeanLocal sbl;
                 .append("<input type = 'text' name ='name' size = '25' />")
                 .append("\n<br>\n \n<br>\n set range of values: ")
                 .append("<input type='text' name = 'value1' size= '5' />")
-                .append("\n - <input type = 'text' name = 'value2' size= '5' />")                
+                .append("\n - <input type = 'text' name = 'value2' size= '5' />")
                 .append("\n<br><br>\n<input type='submit' name='submitbutton' value='show Parameters' />")
                 .append("\n</p>\n</form>")
                 .append("\n<br>");
@@ -126,16 +104,11 @@ SelectBeanLocal sbl;
     }
 
     private String getformdB() {
-        StringBuilder sb = new StringBuilder();      
-                
-                        //search from database
-                sb.append("<form action='ViewList' method = 'Get'>\n")
+        StringBuilder sb = new StringBuilder();        
+        sb.append("<form action='ViewList' method = 'Get'>\n")
                 .append("<h1>Database search  </h1>")
                 .append("<p>Parameter's name: ")
                 .append("<input type = 'text' name ='dbname' size = '25' />")
-                .append("\n<br>\n \n<br>\n set range of values: ")
-                .append("<input type='text' name = 'dbvalue1' size= '5' />")
-                .append("\n - <input type = 'text' name = 'dbvalue2' size= '5' />")
                 .append("\n<br><br>\n<input type='submit' name='deletbutton' value='delete' />")
                 .append("\n<br><br>\n<input type='submit' name='dbsubmitbutton' value='show Parameters' />")
                 .append("\n</p>\n</form>")
