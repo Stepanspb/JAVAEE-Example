@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="StoreEE-ejb/build/generated-sources/ap-source-output"/>
+	<classpathentry kind="src" path="StoreEE-ejb/src/java"/>
+	<classpathentry kind="src" path="StoreEE-war/src/java"/>
+	<classpathentry kind="lib" path="build/StoreEE-ejb.jar"/>
+	<classpathentry kind="lib" path="StoreEE-ejb/dist/StoreEE-ejb.jar"/>
+	<classpathentry kind="output" path="StoreEE-ejb/build/classes"/>
+</classpath>

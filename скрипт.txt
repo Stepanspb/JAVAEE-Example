@@ -1,0 +1,8 @@
+CREATE TABLE STOREPARAMETER
+(
+storename VARCHAR (32) NOT NULL primary key,
+storevalue int not null
+);
+
+
+
